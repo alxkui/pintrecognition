@@ -50,7 +50,7 @@ function App() {
   return (
     <div className="App">
       <h1>What pint is this?</h1>
-      {photo && (<div>
+      {!photo && (<div>
         <Camera ref={camera} facingMode='environment' />
         <button
         className="button-control"
