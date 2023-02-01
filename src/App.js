@@ -53,6 +53,7 @@ function App() {
       <div>
         <Camera ref={camera} facingMode='environment' />
         <button
+        className="button-control"
         onClick={() => {
             const photo = camera.current.takePhoto();
             setPhoto(photo);
