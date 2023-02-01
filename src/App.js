@@ -50,18 +50,17 @@ function App() {
   return (
     <div className="App">
       <h1>What pint is this?</h1>
-      <Camera ref={camera} facingMode='environment' />      
       <div>
-        <img src={photo} alt="Preview" width="400" />
-        <br />
-      </div>
-
-      <button
+        <Camera ref={camera} facingMode='environment' />
+        <button
         onClick={() => {
             const photo = camera.current.takePhoto();
             setPhoto(photo);
         }}
-      />
+        />      
+        <img src={photo} alt="Preview" width="400" />
+      </div>
+
       {photo && <input type='button' value="Predict" onClick={() => predict(photo)} />}
 
       <div>
