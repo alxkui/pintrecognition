@@ -47,28 +47,22 @@ function App() {
     setPredictions(sortedClassifiedPredictions.sort((a, b) => b.prob - a.prob));
   }
 
-
-  const onFileUpload = (e) => {
-    const photo = e.target.files[0];
-    const photoURL = URL.createObjectURL(photo);
-
-    setPhoto({
-      photo,
-      photoURL
-    })
-  }
-
   return (
     <div className="App">
       <h1>What pint is this?</h1>
+      <Camera ref={camera} facingMode='environment' />      
       <div>
-        <img src={photo?.photoURL} alt="" />
+        <img src={photo} alt="Preview" width="400" />
         <br />
       </div>
 
-      <Camera ref={camera} />      
-      <input type='file' id='testImage' onChange={onFileUpload} /><br />
-      {photo && <input type='button' value="Predict" onClick={() => predict(photo.photoURL)} />}
+      <button
+        onClick={() => {
+            const photo = camera.current.takePhoto();
+            setPhoto(photo);
+        }}
+      />
+      {photo && <input type='button' value="Predict" onClick={() => predict(photo)} />}
 
       <div>
         <h3>Predictions</h3>
